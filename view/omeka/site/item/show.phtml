@@ -1,14 +1,16 @@
+<!-- This page overrides /application/view/omeka/site/item/show.phtml. It adds the lightbox js and css files, removes displayTitle and replaces it with dcterms:title inside h1. -->
 <?php
 $translate = $this->plugin('translate');
 $this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
 $this->htmlElement('body')->appendAttribute('class', 'item resource show');
+$this->headScript()->prependFile($this->assetUrl('js/lightbox.min.js'));
+$this->headLink()->prependStylesheet($this->assetUrl('css/lightbox.min.css'));
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
 $valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
-<!-- This page overrides /application/view/omeka/site/item/show.phtml -->
-<?php echo $this->pageTitle($item->displayTitle(null, $valueLang), 2); ?>
 <div class="blocks">
+    <h1 class="blah"><?php echo $item->value('dcterms:title'); ?></h1>
     <h3><?php echo $translate('Item'); ?></h3>
     <?php $this->trigger('view.show.before'); ?>
     <?php echo $this->resourcePageBlocks($item)->getBlocks(); ?>
