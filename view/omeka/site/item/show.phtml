@@ -3,14 +3,12 @@
 $translate = $this->plugin('translate');
 $this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
 $this->htmlElement('body')->appendAttribute('class', 'item resource show');
-$this->headScript()->prependFile($this->assetUrl('js/lightbox.min.js'));
-$this->headLink()->prependStylesheet($this->assetUrl('css/lightbox.min.css'));
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
 $valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
 <div class="blocks">
-    <h1 class="blah"><?php echo $item->value('dcterms:title'); ?></h1>
+    <h1><?php echo $item->value('dcterms:title'); ?></h1>
     <h3><?php echo $translate('Item'); ?></h3>
     <?php $this->trigger('view.show.before'); ?>
     <?php echo $this->resourcePageBlocks($item)->getBlocks(); ?>
