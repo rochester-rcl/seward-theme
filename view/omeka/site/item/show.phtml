@@ -7,6 +7,7 @@ $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
 $valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
+<?php echo $this->breadcrumbs();?>
 <div class="blocks">
     <h1><?php echo $item->value('dcterms:title'); ?></h1>
     <h3><?php echo $translate('Item'); ?></h3>
